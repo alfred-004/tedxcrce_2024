@@ -1,117 +1,140 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY < lastScrollY || currentScrollY < 50) {
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
+            }
+
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [lastScrollY]);
 
     return (
-        <nav className="relative bg-white shadow dark:bg-gray-800 rounded-lg">
-            <div className="container px-6 py-4 m-2 md:flex md:justify-between md:items-center">
-                <div className="flex items-center justify-between">
-                    <a href="#">
-                        <img
-                            className="w-auto h-6 sm:h-7"
-                            src="/tedxcrcelogo.png"
-                            alt="Logo"
-                        />
-                    </a>
+        <nav
+            className={`fixed top-2 z-50 w-[80%] transition-transform duration-300 bg-black-200 bg-opacity-100 mx-4 rounded-2xl ${
+                isVisible ? 'translate-y-0' : '-translate-y-full'
+            }`}
+        >
+            <div className="max-w-7xl px-4 py-4 sm:py-2 flex justify-between items-center">
+                {/* Logo */}
+                <a href="#">
+                    <img
+                        className="w-auto h-6 sm:h-10"
+                        src="/tedxcrcelogo.png"
+                        alt="Logo"
+                    />
+                </a>
 
-                    {/* Mobile menu button */}
-                    <div className="flex lg:hidden">
-                        <button
-                            onClick={() => setIsOpen(!isOpen)}
-                            type="button"
-                            className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
-                            aria-label="toggle menu"
-                        >
-                            {isOpen ? (
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="w-6 h-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    strokeWidth={2}
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M6 18L18 6M6 6l12 12"
-                                    />
-                                </svg>
-                            ) : (
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="w-6 h-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    strokeWidth={2}
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M4 8h16M4 16h16"
-                                    />
-                                </svg>
-                            )}
-                        </button>
-                    </div>
-                </div>
-
-                {/* Menu Items */}
+                {/* Nav Links */}
                 <div
-                    className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center ${isOpen ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-full'
-                        }`}
+                    className={`absolute inset-x-0 top-full z-20 w-full px-6 py-4 rounded-2xl bg-black-200 bg-opacity-90 transition-transform duration-300 ease-in-out md:relative md:top-0 md:bg-transparent md:w-auto md:translate-x-0 md:flex md:items-center ${
+                        isOpen ? 'block' : 'hidden'
+                    }`}
                 >
-                    <div className="flex flex-col md:flex-row md:mx-6">
+                    <div className="flex flex-col md:flex-row justify-center md:mx-6">
                         <a
-                            className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+                            className="my-2 transition-colors duration-300 transform text-gray-200 hover:text-orange-400 md:mx-4 md:my-0"
                             href="#"
                         >
                             Home
                         </a>
                         <a
-                            className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+                            className="my-2 transition-colors duration-300 transform text-gray-200 hover:text-orange-400 md:mx-4 md:my-0"
                             href="#"
                         >
-                            Shop
+                            Speakers
                         </a>
                         <a
-                            className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+                            className="my-2 transition-colors duration-300 transform text-gray-200 hover:text-orange-400 md:mx-4 md:my-0"
                             href="#"
                         >
-                            Contact
+                            Talks
                         </a>
                         <a
-                            className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+                            className="my-2 transition-colors duration-300 transform text-gray-200 hover:text-orange-400 md:mx-4 md:my-0"
                             href="#"
                         >
-                            About
+                            Partners
                         </a>
                     </div>
 
-                    <div className="flex justify-center md:block">
+                    {/* Register Button inside the mobile menu */}
+                    <div className="flex justify-center mt-4 md:hidden">
                         <a
-                            className="relative text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300"
                             href="#"
+                            className="px-4 py-2 text-white bg-orange-500 rounded-lg hover:bg-orange-600"
                         >
-                            <svg
-                                className="w-5 h-5"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z"
-                                    stroke="currentColor"
-                                    strokeWidth={2}
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
-                            <span className="absolute top-0 left-0 p-1 text-xs text-white bg-blue-500 rounded-full"></span>
+                            Register
                         </a>
                     </div>
+                </div>
+
+                {/* Register Button for Desktop */}
+                <div className="hidden md:block">
+                    <a
+                        href="#"
+                        className="px-4 py-2 text-white bg-orange-500 rounded-lg hover:bg-orange-600"
+                    >
+                        Register
+                    </a>
+                </div>
+
+                {/* Mobile Menu Button */}
+                <div className="flex md:hidden">
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        type="button"
+                        className="text-gray-200 hover:text-gray-400 focus:outline-none focus:text-gray-400"
+                        aria-label="toggle menu"
+                    >
+                        {isOpen ? (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-6 h-6"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
+                        ) : (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-6 h-6"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M4 8h16M4 16h16"
+                                />
+                            </svg>
+                        )}
+                    </button>
                 </div>
             </div>
         </nav>

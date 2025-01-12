@@ -1,14 +1,12 @@
 "use client";
 
-import { navItems } from "@/data";
-
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import { Opportunity } from "@/components/Opportunity";
 import Companies from "@/components/Companies";
 import EventDetails from "@/components/EventDetails";
-import { FloatingNav } from "@/components/ui/FloatingNavbar";
 import Navbar from "@/components/Navbar";
+import AboutTed from "@/components/AboutTed";
 
 const Home = () => {
   return (
@@ -16,10 +14,11 @@ const Home = () => {
       <div className="max-w-7xl w-full">
         <Navbar />  
         <Hero />
+        <AboutTed />
         {/* <EventDetails />
         <Opportunity />
-        <Companies /> */}
-        <Footer /> 
+        <Companies /> 
+        <Footer /> */}
       </div>
     </main>
   );
