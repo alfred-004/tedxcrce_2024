@@ -55,47 +55,48 @@ export const AnimatedTestimonials = ({
       className="max-w-sm md:max-w-4xl mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 py-20"
     >
       <div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
-        <div>
-          <div className="relative h-64 w-full">
-            <AnimatePresence>
-              {testimonials.map((testimonial, index) => (
-                <motion.div
-                  key={testimonial.src}
-                  initial={{
-                    opacity: 0,
-                    scale: 0.9,
-                    rotate: isActive(index) ? 0 : -5,
-                  }}
-                  animate={{
-                    opacity: isActive(index) ? 1 : 0.7,
-                    scale: isActive(index) ? 1 : 0.95,
-                    rotate: isActive(index) ? 0 : -5,
-                    zIndex: isActive(index) ? 999 : 998 - index,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.9,
-                    rotate: -5,
-                  }}
-                  transition={{
-                    duration: 0.3,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={testimonial.src}
-                    alt={testimonial.name}
-                    width={250} // Adjust width
-                    height={250} // Adjust height
-                    draggable={false}
-                    className="h-full w-full rounded-3xl object-cover object-center"
-                  />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
-        </div>
+      <div>
+  <div className="relative h-72 w-54 mx-auto"> {/* Adjusted size for portrait */}
+    <AnimatePresence>
+      {testimonials.map((testimonial, index) => (
+        <motion.div
+          key={testimonial.src}
+          initial={{
+            opacity: 0,
+            scale: 0.9,
+            rotate: isActive(index) ? 0 : -5,
+          }}
+          animate={{
+            opacity: isActive(index) ? 1 : 0.7,
+            scale: isActive(index) ? 1 : 0.95,
+            rotate: isActive(index) ? 0 : -5,
+            zIndex: isActive(index) ? 999 : 998 - index,
+          }}
+          exit={{
+            opacity: 0,
+            scale: 0.9,
+            rotate: -5,
+          }}
+          transition={{
+            duration: 0.3,
+            ease: "easeInOut",
+          }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={testimonial.src}
+            alt={testimonial.name}
+            width={300} // Adjusted width for portrait
+            height={500} // Adjusted height for portrait
+            draggable={false}
+            className="h-full w-full rounded-3xl object-cover object-center"
+          />
+        </motion.div>
+      ))}
+    </AnimatePresence>
+  </div>
+</div>
+
         <div className="flex justify-between flex-col py-4">
           <motion.div
             key={active}

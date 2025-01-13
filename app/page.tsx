@@ -17,8 +17,8 @@ const Home = () => {
         <AboutTed />
         {/* <EventDetails />
         <Opportunity />
-        <Companies /> 
-        <Footer /> */}
+        <Companies /> */} 
+        <Footer /> 
       </div>
     </main>
   );

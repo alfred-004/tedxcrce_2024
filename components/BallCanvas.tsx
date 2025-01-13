@@ -9,7 +9,7 @@ const BallCanvas = () => {
         "#66b2b2", //teal-light
         "#006666", //teal-dark
         "#FF4800", //Orange-dark
-        "#FF9100", //Orange-light
+        "#FF9100",
 
     ];
 
