@@ -7,8 +7,8 @@ import { ThemeProvider } from "./provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "TEDxCRCE Internship-Expo",
-  description: "Internship Expo tedxcrce official website",
+  title: "TEDxCRCE",
+  description: "TEDxCRCE official website",
 };
 
 export default function RootLayout({

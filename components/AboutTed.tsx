@@ -82,13 +82,13 @@ export const products = [
     title: "Moonbeam",
     link: "https://gomoonbeam.com",
     thumbnail:
-      "/photo1.jpg",
+      "/photo1.png",
   },
   {
     title: "Cursor",
     link: "https://cursor.so",
     thumbnail:
-      "/photo2.jpg",
+      "/photo2.png",
   },
   {
     title: "Rogue",
@@ -132,7 +132,7 @@ export const products = [
     title: "Tailwind Master Kit",
     link: "https://tailwindmasterkit.com",
     thumbnail:
-      "/photo1.jpg",
+      "/photo1.png",
   },
   {
     title: "SmartBridge",
@@ -169,6 +169,6 @@ export const products = [
     title: "E Free Invoice",
     link: "https://efreeinvoice.com",
     thumbnail:
-      "/photo2.jpg",
+      "/photo2.png",
   },
 ];
