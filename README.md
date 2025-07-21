@@ -32,6 +32,6 @@ git clone git@github.com:your-username/tedxcrce.git
 cd tedxcrce
 
 
-# 🎤 TEDxCRCE Official Website
+## 🎤 TEDxCRCE Official Website
 
 🌐 **Live Site**: [https://tedxcrce.com](https://tedxcrce.com)
