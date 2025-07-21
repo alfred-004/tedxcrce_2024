@@ -30,8 +30,8 @@ This is the official website for **TEDxCRCE**, built with **Next.js** and styled
 ```bash
 git clone git@github.com:your-username/tedxcrce.git
 cd tedxcrce
-
+```
 
 ## 🎤 TEDxCRCE Official Website
 
-🌐 **Live Site**: [https://tedxcrce.com](https://tedxcrce.com)
+### 🌐 **Live Site**: [https://tedxcrce.com](https://tedxcrce.com)
